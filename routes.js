@@ -3,7 +3,7 @@ const {
   getScrapedData,
   postScrapedData,
   getAllData,
-} = require("../controllers/scrapeController");
+} = require("./controllers/scrapeController");
 
 const router = express.Router();
 
