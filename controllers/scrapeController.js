@@ -13,19 +13,6 @@ const getScrapedData = async (req, res) => {
       linkSelector,
     } = req.body;
 
-    if (
-      !websiteURL ||
-      !specificSelector ||
-      !titleSelector ||
-      !descriptionSelector ||
-      !imgSelector ||
-      !linkSelector
-    ) {
-      return res
-        .status(400)
-        .json({ error: "Missing required body parameters" });
-    }
-
     const scrapedData = await scrapeData(
       websiteURL,
       specificSelector,
@@ -34,11 +21,6 @@ const getScrapedData = async (req, res) => {
       imgSelector,
       linkSelector
     );
-    if (!scrapedData || scrapedData.length === 0) {
-      return res
-        .status(500)
-        .json({ error: "No data scraped or error occurred during scraping" });
-    }
 
     res.json({ data: scrapedData });
   } catch (error) {
@@ -58,19 +40,6 @@ const postScrapedData = async (req, res) => {
       linkSelector,
     } = req.body;
     const jsonFileName = "scrapedData.json";
-
-    if (
-      !websiteURL ||
-      !specificSelector ||
-      !titleSelector ||
-      !descriptionSelector ||
-      !imgSelector ||
-      !linkSelector
-    ) {
-      return res
-        .status(400)
-        .json({ error: "Missing required body parameters" });
-    }
 
     const scrapedData = await scrapeData(
       websiteURL,
