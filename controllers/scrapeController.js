@@ -6,7 +6,7 @@ const getScrapedData = async (req, res) => {
   try {
     const {
       websiteURL,
-      spesificSelector,
+      specificSelector,
       titleSelector,
       descriptionSelector,
       imgSelector,
@@ -15,7 +15,7 @@ const getScrapedData = async (req, res) => {
 
     if (
       !websiteURL ||
-      !spesificSelector ||
+      !specificSelector ||
       !titleSelector ||
       !descriptionSelector ||
       !imgSelector ||
@@ -28,7 +28,7 @@ const getScrapedData = async (req, res) => {
 
     const scrapedData = await scrapeData(
       websiteURL,
-      spesificSelector,
+      specificSelector,
       titleSelector,
       descriptionSelector,
       imgSelector,
@@ -51,7 +51,7 @@ const postScrapedData = async (req, res) => {
   try {
     const {
       websiteURL,
-      spesificSelector,
+      specificSelector,
       titleSelector,
       descriptionSelector,
       imgSelector,
@@ -61,7 +61,7 @@ const postScrapedData = async (req, res) => {
 
     if (
       !websiteURL ||
-      !spesificSelector ||
+      !specificSelector ||
       !titleSelector ||
       !descriptionSelector ||
       !imgSelector ||
@@ -74,7 +74,7 @@ const postScrapedData = async (req, res) => {
 
     const scrapedData = await scrapeData(
       websiteURL,
-      spesificSelector,
+      specificSelector,
       titleSelector,
       descriptionSelector,
       linkSelector
