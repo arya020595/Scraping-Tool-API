@@ -39,20 +39,15 @@ const postScrapedData = async (req, res) => {
       imgSelector,
       linkSelector,
     } = req.body;
-    const jsonFileName = "scrapedData.json";
 
     const scrapedData = await scrapeData(
       websiteURL,
       specificSelector,
       titleSelector,
       descriptionSelector,
+      imgSelector,
       linkSelector
     );
-    if (!scrapedData || scrapedData.length === 0) {
-      return res
-        .status(500)
-        .json({ error: "No data scraped or error occurred during scraping" });
-    }
 
     await saveToMongoDB(scrapedData);
 

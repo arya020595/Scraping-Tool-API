@@ -21,7 +21,7 @@ app.get("/health", (req, res) => {
   res.json({ status: "Healthy" });
 });
 
-// API routes
+// API routes with namespace
 app.use("/api", routes);
 
 app.listen(port, () => {
