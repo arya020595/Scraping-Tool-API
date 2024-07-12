@@ -1,4 +1,3 @@
-// index.js
 const express = require("express");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
@@ -14,7 +13,15 @@ const routes = require("./routes");
 // Swagger setup
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+// Body parser middleware
 app.use(bodyParser.json());
+
+// Health check endpoint
+app.get("/health", (req, res) => {
+  res.json({ status: "Healthy" });
+});
+
+// API routes
 app.use("/api", routes);
 
 app.listen(port, () => {

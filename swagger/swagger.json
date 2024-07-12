@@ -1,0 +1,146 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Scrape API",
+    "description": "API for scraping data from websites"
+  },
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": ["http"],
+  "paths": {
+    "/scrape": {
+      "get": {
+        "summary": "Get scraped data",
+        "parameters": [
+          {
+            "name": "websiteURL",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "URL of the website to scrape"
+          },
+          {
+            "name": "specificSelector",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Specific CSS selector to scrape"
+          },
+          {
+            "name": "titleSelector",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "CSS selector for the title"
+          },
+          {
+            "name": "descriptionSelector",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "CSS selector for the description"
+          },
+          {
+            "name": "imgSelector",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "CSS selector for the image"
+          },
+          {
+            "name": "linkSelector",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "CSS selector for the link"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Scraped data",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "image": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Save scraped data",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ScrapeRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data saved successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ScrapeRequest": {
+      "type": "object",
+      "properties": {
+        "websiteURL": {
+          "type": "string"
+        },
+        "specificSelector": {
+          "type": "string"
+        },
+        "titleSelector": {
+          "type": "string"
+        },
+        "descriptionSelector": {
+          "type": "string"
+        },
+        "imgSelector": {
+          "type": "string"
+        },
+        "linkSelector": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "websiteURL",
+        "specificSelector",
+        "titleSelector",
+        "descriptionSelector",
+        "imgSelector",
+        "linkSelector"
+      ]
+    }
+  }
+}
