@@ -5,8 +5,8 @@ const scrapeSchema = new mongoose.Schema(
   {
     title: String,
     description: String,
+    link: String,
     image: String,
-    url: String,
   },
   { timestamps: true }
 );

@@ -1,4 +1,4 @@
-const { Scrape } = require("../models/scrapeModel");
+const Scrape = require("../models/scrapeModel");
 
 const saveToMongoDB = async (data) => {
   try {
