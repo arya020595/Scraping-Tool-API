@@ -9,8 +9,8 @@ const {
 
 const router = express.Router();
 
-router.get("/", validate(scrapeValidationSchema), getScrapedData);
-router.post("/", validate(scrapeValidationSchema), postScrapedData);
+router.post("/", validate(scrapeValidationSchema), getScrapedData);
+router.post("/save", validate(scrapeValidationSchema), postScrapedData);
 router.get("/data", getAllData);
 
 module.exports = router;
