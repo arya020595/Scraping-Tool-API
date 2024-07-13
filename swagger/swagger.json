@@ -5,12 +5,15 @@
     "title": "Scrape API",
     "description": "API for scraping data from websites"
   },
-  "host": "localhost:3000",
-  "basePath": "/api",
-  "schemes": ["http"],
+  "servers": [
+    {
+      "url": "http://localhost:3000/api",
+      "description": "Local server"
+    }
+  ],
   "paths": {
     "/scrape": {
-      "get": {
+      "post": {
         "summary": "Get scraped data",
         "requestBody": {
           "required": true,
@@ -58,49 +61,27 @@
         "responses": {
           "200": {
             "description": "Scraped data",
-            "schema": {
-              "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "title": {
-                    "type": "string"
-                  },
-                  "description": {
-                    "type": "string"
-                  },
-                  "image": {
-                    "type": "string"
-                  },
-                  "url": {
-                    "type": "string"
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "title": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      },
+                      "image": {
+                        "type": "string"
+                      },
+                      "url": {
+                        "type": "string"
+                      }
+                    }
                   }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Save scraped data",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/ScrapeRequest"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Data saved successfully",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string"
                 }
               }
             }
@@ -108,7 +89,39 @@
         }
       }
     },
-    "/data": {
+    "/scrape/save": {
+      "post": {
+        "summary": "Save scraped data",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ScrapeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data saved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scrape/data": {
       "get": {
         "summary": "Get all scraped data from the database",
         "responses": {
@@ -150,37 +163,44 @@
       }
     }
   },
-  "definitions": {
-    "ScrapeRequest": {
-      "type": "object",
-      "properties": {
-        "websiteURL": {
-          "type": "string"
+  "components": {
+    "schemas": {
+      "ScrapeRequest": {
+        "type": "object",
+        "properties": {
+          "websiteURL": {
+            "type": "string",
+            "description": "The URL of the website to scrape"
+          },
+          "specificSelector": {
+            "type": "string",
+            "description": "The specific CSS selector to target"
+          },
+          "titleSelector": {
+            "type": "string",
+            "description": "The CSS selector for the title"
+          },
+          "descriptionSelector": {
+            "type": "string",
+            "description": "The CSS selector for the description"
+          },
+          "imgSelector": {
+            "type": "string",
+            "description": "The CSS selector for the image"
+          },
+          "linkSelector": {
+            "type": "string",
+            "description": "The CSS selector for the link"
+          }
         },
-        "specificSelector": {
-          "type": "string"
-        },
-        "titleSelector": {
-          "type": "string"
-        },
-        "descriptionSelector": {
-          "type": "string"
-        },
-        "imgSelector": {
-          "type": "string"
-        },
-        "linkSelector": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "websiteURL",
-        "specificSelector",
-        "titleSelector",
-        "descriptionSelector",
-        "imgSelector",
-        "linkSelector"
-      ]
+        "required": [
+          "websiteURL",
+          "specificSelector",
+          "titleSelector",
+          "imgSelector",
+          "linkSelector"
+        ]
+      }
     }
   }
 }
