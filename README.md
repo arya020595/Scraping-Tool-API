@@ -1,7 +1,7 @@
-# Scrape API
+# Scraping Tool API
 
 ## Description
-The Scrape API is a robust and scalable solution designed to scrape data from websites using specified CSS selectors. This API enables users to define their own selectors and retrieve structured data, making it ideal for use cases like data mining, market research, and competitive analysis.
+The Scraping Tool API is a robust and scalable solution designed to scrape data from websites using specified CSS selectors. This API enables users to define their own selectors and retrieve structured data, making it ideal for use cases such as data mining, market research, and competitive analysis.
 
 ## Features
 - **Dynamic Scraping**: Specify CSS selectors for the title, description, image, and link to extract precise data from web pages.
