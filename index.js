@@ -21,7 +21,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use(bodyParser.json());
 
 // Health check endpoint
-app.get("/health", (req, res) => {
+app.get("/", (req, res) => {
   res.json({ status: "Healthy" });
 });
 
